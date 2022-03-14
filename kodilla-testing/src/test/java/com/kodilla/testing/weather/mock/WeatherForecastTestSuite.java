@@ -54,10 +54,9 @@ public class WeatherForecastTestSuite {
         //When
         double mean = weatherForecast.calculateMeanTemperature();
         double expectedMean = (25.5 + 26.2 + 24.8 + 25.2 + 26.1)/5.0;
-        expectedMean = Math.round(expectedMean*100.0)/100.0;
 
         //Then
-        Assertions.assertEquals(expectedMean, mean);
+        Assertions.assertEquals(expectedMean, mean, 0.001);
     }
 
     @Test
