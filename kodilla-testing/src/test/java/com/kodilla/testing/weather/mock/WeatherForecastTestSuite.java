@@ -60,8 +60,8 @@ public class WeatherForecastTestSuite {
     }
 
     @Test
-    void testCalculateMedianTemperature() {
-        System.out.println("testCalculateMedianTemperature()");
+    void testCalculateMedianTemperatureOdd() {
+        System.out.println("testCalculateMedianTemperatureOdd()");
         //Given
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
 
@@ -72,4 +72,21 @@ public class WeatherForecastTestSuite {
         //Then
         Assertions.assertEquals(expectedMedian, median);
     }
+
+    @Test
+    void testCalculateMedianTemperatureEven() {
+        System.out.println("testCalculateMedianTemperatureEven()");
+        temperaturesMap.put("Rzeszów2", 25.7);
+
+        //Given
+        WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+
+        //When
+        double median = weatherForecast.calculateMedianTemperature();
+        double expectedMedian = 25.6;
+
+        //Then
+        Assertions.assertEquals(expectedMedian, median);
+    }
+
 }

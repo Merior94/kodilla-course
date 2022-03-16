@@ -37,8 +37,15 @@ public class WeatherForecast {
         Object[] array = this.temperatures.getTemperatures().values().toArray();
         Arrays.sort(array);
 
-        int index = this.temperatures.getTemperatures().size()/2;
+        double result;
+        if (this.temperatures.getTemperatures().size()%2 != 0) {
+            result = (double) array[this.temperatures.getTemperatures().size()/2];
+        } else {
+            result = (double) array[(this.temperatures.getTemperatures().size()/2)];
+            result += (double) array[(this.temperatures.getTemperatures().size()/2) -1];
+            result /= 2;
+        }
 
-        return (double)array[index];
+        return result;
     }
 }
