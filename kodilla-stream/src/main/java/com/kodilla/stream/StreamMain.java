@@ -56,6 +56,15 @@ public class StreamMain {
         };
 
         poemBeautifier.beautify("Lorem Ipsum", decor1);
+
+        PoemDecorator decor2 = (t) -> {
+            String result = "";
+            for(char c:t.toCharArray()){
+                result += c + " ";
+            }
+            return result;
+        };
+        poemBeautifier.beautify("Lorem Ipsum", decor2);
     }
 
 }
