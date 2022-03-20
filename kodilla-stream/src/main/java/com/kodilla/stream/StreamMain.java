@@ -52,7 +52,7 @@ public class StreamMain {
         Forum forum = new Forum();
 
         System.out.println("Before filtering:");
-        forum.getUserList().stream()
+        forum.getUserList()
                 .forEach(System.out::println);
 
         System.out.println("\nAfter filtering:");
@@ -63,6 +63,7 @@ public class StreamMain {
                 .collect(Collectors.toMap(ForumUser::getId, user -> user));
 
         par.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);
 
     }
