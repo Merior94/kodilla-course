@@ -1,75 +1,69 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.beautifier.PoemDecorator;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 
-import java.lang.reflect.Array;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to module 7 - Stream");
+        System.out.println("Welcome to module 7 - Stream\n");
 
-//        SaySomething saySomething = new SaySomething();
-//        saySomething.say();
+//        People.getList().stream()
+////                .map(s -> s.toUpperCase())
+//                .map(String::toUpperCase)
+//                .filter(s -> s.length() > 11)
+//                .map(s -> s.substring(0, s.indexOf(' ') + 2) + ".")
+//                .filter(s -> s.substring(0, 1).equals("M"))
+//                .forEach(System.out::println);
 
-//        Processor processor = new Processor();                                // [6]
-//        ExecuteSaySomething executeSaySomething = new ExecuteSaySomething();  // [7]
-//        processor.execute(executeSaySomething);
-
-//        Processor processor = new Processor();                                  // [6]
-//        Executor codeToExecute = () -> System.out.println("This is an example text.");  // [7]
-//        processor.execute(codeToExecute);
-
-//        Processor processor = new Processor();
-//        processor.execute(() -> System.out.println("This is an example text."));
-
-//        ExpressionExecutor expressionExecutor = new ExpressionExecutor();       // [5]
+//        BookDirectory theBookDirectory = new BookDirectory();
+//        List<Book> theResultListOfBooks = theBookDirectory.getList().stream()   // [1]
+//                .filter(book -> book.getYearOfPublication() > 2005)                  // [2]
+//                .collect(Collectors.toList());                                       // [3]
 //
-//        System.out.println("Calculating expressions with lambdas");
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+//        System.out.println("# elements: " + theResultListOfBooks.size());       // [4]
+//        theResultListOfBooks.stream()                                           // [5]
+//                .forEach(System.out::println);
+//        //Map
+//        BookDirectory theBookDirectory = new BookDirectory();
 //
-//        System.out.println("Calculating expressions with method references");
-//        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
-//        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
-//        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-//        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
+//        Map<String, Book> theResultMapOfBooks = theBookDirectory.getList().stream()
+//                .filter(book -> book.getYearOfPublication() > 2005)
+//                .collect(Collectors.toMap(Book::getSignature, book -> book));             // [1]
+//
+//        System.out.println("# elements: " + theResultMapOfBooks.size());             // [2]
+//        theResultMapOfBooks.entrySet().stream()
+//                .map(entry -> entry.getKey() + ": " + entry.getValue())                   // [3]
+//                .forEach(System.out::println);
 
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-        poemBeautifier.beautify("Lorem Ipsum", String::toUpperCase);
-        poemBeautifier.beautify("Lorem Ipsum", String::toLowerCase);
-        poemBeautifier.beautify("Lorem Ipsum", (t) -> t+"ABC");
-        poemBeautifier.beautify("Lorem Ipsum", (t) -> "ABC"+t);
+        //Join
+//        BookDirectory theBookDirectory = new BookDirectory();
+//        String theResultStringOfBooks = theBookDirectory.getList().stream()  // [1]
+//                .filter(book -> book.getYearOfPublication() > 2005)
+//                .map(Book::toString)
+//                .collect(Collectors.joining(",\n", "<<", ">>"));                    // [2]
+//
+//        System.out.println(theResultStringOfBooks);
 
 
-        PoemDecorator decor1 = (t) -> {
-            String result = "";
-            for(char c:t.toCharArray()){
-                result += c + "\n";
-            }
-            return result;
-        };
+        Forum forum = new Forum();
 
-        poemBeautifier.beautify("Lorem Ipsum", decor1);
+        System.out.println("Before filtering:");
+        forum.getUserList().stream()
+                .forEach(System.out::println);
 
-        PoemDecorator decor2 = (t) -> {
-            String result = "";
-            for(char c:t.toCharArray()){
-                result += c + " ";
-            }
-            return result;
-        };
-        poemBeautifier.beautify("Lorem Ipsum", decor2);
+        System.out.println("\nAfter filtering:");
+        Map<Integer, ForumUser> par = forum.getUserList().stream()
+                .filter(user -> user.getSex() == 'M')
+                .filter(user -> user.getDateOfBirth().getYear() < (2022 - 20))
+                .filter(user -> user.getPosts() > 0)
+                .collect(Collectors.toMap(ForumUser::getId, user -> user));
 
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
-        NumbersGenerator.generateOdd(20);
+        par.entrySet().stream()
+                .forEach(System.out::println);
+
     }
-
 }
