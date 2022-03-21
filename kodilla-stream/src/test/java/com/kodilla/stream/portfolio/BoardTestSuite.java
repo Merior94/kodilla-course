@@ -57,8 +57,8 @@ class BoardTestSuite {
         System.out.println("average2: " + averageWorkingOnTask2);
 
         //Then
-        assertEquals(10, averageWorkingOnTask);
-        assertEquals(10, averageWorkingOnTask2);
+        assertEquals(10, averageWorkingOnTask, 0.1);
+        assertEquals(10, averageWorkingOnTask2,0.1);
     }
 
     @Test
