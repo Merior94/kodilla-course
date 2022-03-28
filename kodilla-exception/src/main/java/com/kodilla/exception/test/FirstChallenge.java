@@ -22,6 +22,8 @@ public class FirstChallenge {
             System.out.println(result);
         } catch(ArithmeticException e){
             System.out.println("Dzielenie przez 0! " + e);
+        } finally {
+            System.out.println("Trud skończony.");
         }
 
     }
