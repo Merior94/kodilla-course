@@ -15,7 +15,7 @@ public class FlightFinderRunner {
         }
 
         try{
-            System.out.println(flightFinder.findFlight(new Flight("Warsaw","Tokio")));
+            System.out.println(flightFinder.findFlight(new Flight("Warsaw","Tokio2")));
         } catch(RouteNotFoundException e){
             System.out.println(e);
         }

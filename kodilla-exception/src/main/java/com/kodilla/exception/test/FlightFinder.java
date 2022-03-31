@@ -17,7 +17,7 @@ public class FlightFinder {
 
         //System.out.println(flightsPlan);
 
-        if (flightsPlan.get(flight.getArrivalAirport())){
+        if (flightsPlan.containsKey(flight.getArrivalAirport())){
             return "Flight from " + flight.getDepartureAirport() + " to " + flight.getArrivalAirport();
         } else{
             throw (new RouteNotFoundException("Flight not found!"));
