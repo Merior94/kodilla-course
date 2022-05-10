@@ -10,7 +10,12 @@ public class Food2DoorApplication {
         //OrderRequest orderRequest = new OrderRequest("Napoje", 5, "GlutenFreeShop");
 
         OrderProcessor orderProcessor = new OrderProcessor();
-        orderProcessor.process(orderRequest);
+        try {
+            orderProcessor.process(orderRequest);
+        }
+        catch (Exception e) {
+            System.out.println("Błąd! Nie znaleziono takiego dostawcy " + e);
+        }
 
     }
 }

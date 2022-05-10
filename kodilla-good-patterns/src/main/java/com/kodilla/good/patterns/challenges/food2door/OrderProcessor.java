@@ -14,18 +14,19 @@ public class OrderProcessor {
 
     //realizacja zamówienia
     public boolean process(OrderRequest orderRequest) {
-        try {
-            Manufacturer manufacturer = manufacturers.stream()
-                    .filter(m -> m.getName().equals(orderRequest.getManufacturer()))
-                    .findFirst()
-                    .orElseThrow();
-            manufacturer.process(orderRequest);
-            return true;
 
-        } catch (
-                Exception e) {
-            System.out.println("Błąd! Nie znaleziono takiego dostawcy " + e);
-            return false;
-        }
+        Manufacturer manufacturer = manufacturers.stream()
+                .filter(m -> m.getName().equals(orderRequest.getManufacturer()))
+                .findFirst()
+                .orElseThrow();
+
+//            if (manufacturer != null) {
+//                manufacturer.process(orderRequest);
+//                return true;
+//            }
+//            System.out.println("Błąd! Nie znaleziono takiego dostawcy ");
+//            return false;
+
+        return true;
     }
 }

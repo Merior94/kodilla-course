@@ -2,6 +2,8 @@ package com.kodilla.good.patterns.challenges.food2door;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class food2doorTestSuite {
@@ -20,13 +22,17 @@ public class food2doorTestSuite {
             boolean result1 = orderProcessor.process(orderRequest1);
             boolean result2 = orderProcessor.process(orderRequest2);
             boolean result3 = orderProcessor.process(orderRequest3);
-            boolean result4 = orderProcessor.process(orderRequest4);
-
+            boolean result4 = false;
+            try {
+                    orderProcessor.process(orderRequest4);
+            } catch (NoSuchElementException e){
+                    result4 = true;
+            }
             // Then
             assertTrue(result1);
             assertTrue(result2);
             assertTrue(result3);
-            assertFalse(result4);
+            assertTrue(result4);
     }
 
 }

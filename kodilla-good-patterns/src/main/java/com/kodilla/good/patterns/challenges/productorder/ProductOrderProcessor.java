@@ -14,16 +14,20 @@ public class ProductOrderProcessor {
     }
 
     public ProductOrderDto process(final ProductOrderRequest productOrderRequest) {
+        boolean inStock;
+        boolean isSold = false;
+
         //sprawdź czy jest w magazynie
-        boolean inStock = productRepository.isInStock(productOrderRequest.getProduct());
+        inStock = productRepository.isInStock(productOrderRequest.getProduct());
 
         //sprzedaj
-        productOrderService.order(productOrderRequest.getUser(), productOrderRequest.getProduct());
-
-
         if (inStock) {
+            isSold = productOrderService.order(productOrderRequest.getUser(), productOrderRequest.getProduct());
+        }
+
+        if (isSold) {
             informationService.inform(productOrderRequest.getUser());
-            productRepository.order(productOrderRequest.getUser(), productOrderRequest.getProduct());
+            productRepository.createOrder(productOrderRequest.getUser(), productOrderRequest.getProduct());
             return new ProductOrderDto(productOrderRequest.getUser(), true);
         } else {
             return new ProductOrderDto(productOrderRequest.getUser(), false);
