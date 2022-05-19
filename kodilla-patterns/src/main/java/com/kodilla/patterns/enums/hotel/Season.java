@@ -8,7 +8,7 @@ public enum Season {
     HOLIDAY(new BigDecimal(400), new BigDecimal(500));
 
     private final BigDecimal singleRoomPrice;
-    private final BigDecimal doubleRoomPrice;
+    private BigDecimal doubleRoomPrice;
 
     Season(BigDecimal singleRoomPrice, BigDecimal doubleRoomPrice) {
         this.singleRoomPrice = singleRoomPrice;
@@ -21,5 +21,9 @@ public enum Season {
 
     public BigDecimal getDoubleRoomPrice() {
         return doubleRoomPrice;
+    }
+
+    public void setDoubleRoomPrice(BigDecimal price) {
+        this.doubleRoomPrice = price;
     }
 }

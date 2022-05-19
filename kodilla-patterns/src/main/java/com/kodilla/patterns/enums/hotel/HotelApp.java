@@ -1,5 +1,7 @@
 package com.kodilla.patterns.enums.hotel;
 
+import java.math.BigDecimal;
+
 public class HotelApp {
 
     public static void main(String[] args) {
@@ -14,6 +16,9 @@ public class HotelApp {
         System.out.println("   - holiday season:" + Season.HOLIDAY.getDoubleRoomPrice());
 
         Season season = Season.HOLIDAY;
+
+        Season.HOLIDAY.setDoubleRoomPrice(BigDecimal.valueOf(9999.99));
+        System.out.println("   - holiday season changed:" + Season.HOLIDAY.getDoubleRoomPrice());
 
         System.out.println(season);
     }
