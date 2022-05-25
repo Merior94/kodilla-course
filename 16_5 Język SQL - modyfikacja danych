@@ -1,0 +1,13 @@
+16_5 Język SQL - modyfikacja danych
+
+SELECT * FROM POSTS;
+
+INSERT INTO POSTS (USER_ID, BODY)
+VALUES (3, "Hello everyone!");
+
+UPDATE POSTS
+SET BODY = "To delete"
+WHERE ID = 8;
+
+DELETE FROM POSTS
+WHERE BODY = "To delete";
