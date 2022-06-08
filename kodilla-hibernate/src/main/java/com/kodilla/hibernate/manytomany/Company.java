@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Company.retrieveByThreeLetters",
+        query = "FROM Company WHERE SUBSTRING(company_name,1,3) = :NAME"
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -50,5 +55,13 @@ public class Company {
 
     private void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
