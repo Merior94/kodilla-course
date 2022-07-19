@@ -10,6 +10,11 @@ import java.util.List;
         query = "FROM Employee WHERE lastname = :LASTNAME"
 )
 
+@NamedQuery(
+        name = "Employee.retrieveByName",
+        query = "FROM Employee WHERE firstname LIKE CONCAT('%',:NAME,'%') OR lastname LIKE CONCAT('%',:NAME,'%')"
+)
+
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
@@ -47,7 +52,7 @@ public class Employee {
         return lastname;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "JOIN_COMPANY_EMPLOYEE",
             joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
